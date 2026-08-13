@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-black: #050505;
+  --color-brand-red: #E50914;
+  --color-discord: #5865F2;
+  --font-inter: "Inter", sans-serif;
+  --font-oswald: "Oswald", sans-serif;
+  --font-teko: "Teko", sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
+}
+
+body {
+  background-color: var(--color-brand-black);
+  color: white;
+  font-family: var(--font-inter);
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  min-width: 200%;
+  animation: marquee 20s linear infinite;
+}
+
+/* Custom terminal scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-brand-black);
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-red);
+}

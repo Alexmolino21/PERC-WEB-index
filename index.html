@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perú Roleplay</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tomorrow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* Esto obliga a que TODO use la fuente Tomorrow */
+        body, h1, h2, h3, h4, h5, h6, p, span, a, div, td, th { 
+            font-family: 'Tomorrow', sans-serif !important; 
+        }
+        
+        /* Mantenemos esta clase por si la dejaste en algún título, pero ahora usará Tomorrow */
+        .font-teko { font-family: 'Tomorrow', sans-serif !important; }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #dc2626; border-radius: 10px; }
+    </style>
+  </head>
+  <body>
+    <!-- ========================================== -->
+    <!-- PANTALLA DE CARGA GLOBAL (CORREGIDA ANTI-PARPADEO) -->
+    <!-- ========================================== -->
+    <div id="pantalla-carga" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #0a0a0a; transition: opacity 0.7s; pointer-events: none;">
+        
+        <!-- Fondo Inmersivo con opacidad forzada desde el inicio -->
+        <img src="https://i.postimg.cc/3JMcB2n8/Estamos-Jodidos-Banner-Discord.png" 
+             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.15;">
+        
+        <!-- Capa Oscura y Desenfoque forzado -->
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(10, 10, 10, 0.75); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);"></div>
+
+        <!-- Logo Animado y Barra -->
+        <div style="position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center;">
+            <img src="https://i.postimg.cc/sDB64kD2/9744325783487815c73c892043122c09-Photoroom.png" 
+                 alt="Cargando Perú RP" class="animate-pulse" style="width: 140px; height: auto; filter: drop-shadow(0 0 25px rgba(220,38,38,0.8));">
+            
+            <!-- Barra de progreso visual -->
+            <div style="margin-top: 2.5rem; width: 14rem; height: 0.375rem; background-color: #262626; border-radius: 9999px; overflow: hidden; position: relative;">
+                <div style="position: absolute; top: 0; left: 0; height: 100%; background-color: #dc2626; width: 50%; animation: loading_bar 1s ease-in-out infinite alternate;"></div>
+            </div>
+            <p class="animate-pulse" style="margin-top: 1rem; color: #ef4444; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.3em; margin-bottom: 0;">Cargando Ciudad...</p>
+        </div>
+    </div>
+
+    <style>
+        @keyframes loading_bar {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
+    </style>
+
+    <script>
+        // Lógica para desaparecer la pantalla cuando todo cargue
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('pantalla-carga');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 700); 
+            }, 300); 
+        });
+    </script>
+    <!-- ========================================== -->
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

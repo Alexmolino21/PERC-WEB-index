@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base de Datos: Tienda - Perú Roleplay</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- TIPOGRAFÍA OFICIAL: TOMORROW -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tomorrow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Aplicando Tomorrow a todo el documento */
+        body { font-family: 'Tomorrow', sans-serif; }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #dc2626; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-neutral-950 text-white min-h-screen relative overflow-x-hidden text-sm">
+    <!-- ========================================== -->
+    <!-- PANTALLA DE CARGA GLOBAL (CORREGIDA ANTI-PARPADEO) -->
+    <!-- ========================================== -->
+    <div id="pantalla-carga" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #0a0a0a; transition: opacity 0.7s; pointer-events: none;">
+        
+        <!-- Fondo Inmersivo con opacidad forzada desde el inicio -->
+        <img src="https://i.postimg.cc/3JMcB2n8/Estamos-Jodidos-Banner-Discord.png" 
+             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.15;">
+        
+        <!-- Capa Oscura y Desenfoque forzado -->
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(10, 10, 10, 0.75); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);"></div>
+
+        <!-- Logo Animado y Barra -->
+        <div style="position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center;">
+            <img src="https://i.postimg.cc/sDB64kD2/9744325783487815c73c892043122c09-Photoroom.png" 
+                 alt="Cargando Perú RP" class="animate-pulse" style="width: 140px; height: auto; filter: drop-shadow(0 0 25px rgba(220,38,38,0.8));">
+            
+            <!-- Barra de progreso visual -->
+            <div style="margin-top: 2.5rem; width: 14rem; height: 0.375rem; background-color: #262626; border-radius: 9999px; overflow: hidden; position: relative;">
+                <div style="position: absolute; top: 0; left: 0; height: 100%; background-color: #dc2626; width: 50%; animation: loading_bar 1s ease-in-out infinite alternate;"></div>
+            </div>
+            <p class="animate-pulse" style="margin-top: 1rem; color: #ef4444; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.3em; margin-bottom: 0;">Cargando Ciudad...</p>
+        </div>
+    </div>
+
+    <style>
+        @keyframes loading_bar {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
+    </style>
+
+    <script>
+        // Lógica para desaparecer la pantalla cuando todo cargue
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('pantalla-carga');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 700); 
+            }, 300); 
+        });
+    </script>
+    <!-- ========================================== -->
+
+    <!-- FONDO INMERSIVO TIENDA -->
+    <div class="fixed inset-0 z-0">
+        <img src="https://media.discordapp.net/attachments/1406437260391350312/1424196657377185924/Tienda.png?ex=69f7443f&is=69f5f2bf&hm=84a799883815c32d4b29d05e4908c631343e8081177500895c16de133b4b93cf" 
+             class="w-full h-full object-cover opacity-20">
+        <div class="absolute inset-0 bg-neutral-950/80 backdrop-blur-[2px]"></div>
+    </div>
+
+    <div class="relative z-10">
+        
+        <!-- NAVBAR -->
+        <nav class="w-full bg-neutral-950/90 backdrop-blur-md border-b border-red-600/30 sticky top-0 z-[100]">
+            <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+                <img src="https://i.postimg.cc/sDB64kD2/9744325783487815c73c892043122c09-Photoroom.png" 
+                     alt="Logo Perú RP" class="h-12 drop-shadow-[0_0_10px_rgba(220,38,38,0.5)]">
+                <a href="index.html" class="px-6 py-2 bg-neutral-800 hover:bg-red-600 border border-neutral-700 hover:border-red-500 rounded-lg transition-all font-bold uppercase tracking-wide text-xs">Volver al Inicio</a>
+            </div>
+        </nav>
+
+        <main class="max-w-5xl mx-auto px-6 py-14">
+            
+            <div class="mb-14">
+                <!-- Reduje de text-6xl a text-5xl para que la fuente ancha respire -->
+                <h1 class="text-5xl md:text-6xl font-bold uppercase text-white leading-tight">Portal de Aportes — Tienda Oficial</h1>
+                <p class="text-gray-400 mt-3 text-base">Apoya monetariamente al servidor y recibe reconocimiento por tu aporte a la comunidad.</p>
+            </div>
+
+            <!-- TABLA 1: DONACIONES -->
+            <div class="mb-16">
+                <h2 class="text-2xl text-red-500 uppercase font-bold tracking-wide mb-5 flex items-center gap-3">
+                    <span>❤️</span> Donaciones Voluntarias (Robux)
+                </h2>
+                <div class="overflow-hidden border border-neutral-800 rounded-xl shadow-2xl">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-neutral-900/90 text-gray-400 text-xs uppercase tracking-wide border-b border-neutral-800">
+                                <th class="px-6 py-5 font-bold">Concepto de Aporte</th>
+                                <th class="px-6 py-5 font-bold text-right">Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-neutral-800 bg-black/40 backdrop-blur-sm">
+                            <tr class="hover:bg-red-600/5 transition"><td class="px-6 py-4 text-gray-200">Donación de Robux (Básica)</td><td class="px-6 py-4 text-right text-yellow-500 font-bold whitespace-nowrap">5 Robux</td></tr>
+                            <tr class="hover:bg-red-600/5 transition"><td class="px-6 py-4 text-gray-200">Donación de Robux (Estándar)</td><td class="px-6 py-4 text-right text-yellow-500 font-bold whitespace-nowrap">10 Robux</td></tr>
+                            <tr class="hover:bg-red-600/5 transition"><td class="px-6 py-4 text-gray-200">Donación de Robux (Bronce)</td><td class="px-6 py-4 text-right text-yellow-500 font-bold whitespace-nowrap">25 Robux</td></tr>
+                            
+                            <!-- OPCIONES POPULARES -->
+                            <tr class="bg-yellow-500/5 border-l-4 border-yellow-600 hover:bg-yellow-500/10 transition">
+                                <td class="px-6 py-4 text-gray-200 flex flex-wrap items-center gap-3">
+                                    ⭐ Donación de Robux (Plata)
+                                    <span class="text-[10px] bg-yellow-600/20 text-yellow-500 border border-yellow-600/50 px-2 py-1 rounded font-bold uppercase tracking-wider shadow-[0_0_10px_rgba(234,179,8,0.2)]">
+                                        Populares
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 text-right text-yellow-400 font-bold drop-shadow-[0_0_5px_rgba(234,179,8,0.4)] whitespace-nowrap">50 Robux</td>
+                            </tr>
+                            <tr class="bg-yellow-500/5 border-l-4 border-yellow-600 hover:bg-yellow-500/10 transition">
+                                <td class="px-6 py-4 text-gray-200 flex flex-wrap items-center gap-3">
+                                    ⭐ Donación de Robux (Oro)
+                                    <span class="text-[10px] bg-yellow-600/20 text-yellow-500 border border-yellow-600/50 px-2 py-1 rounded font-bold uppercase tracking-wider shadow-[0_0_10px_rgba(234,179,8,0.2)]">
+                                        Populares
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 text-right text-yellow-400 font-bold drop-shadow-[0_0_5px_rgba(234,179,8,0.4)] whitespace-nowrap">100 Robux</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="mt-4 text-xs text-gray-500 italic">* Donaciones de 50 o 100 Robux otorgan el rol @Donador. Reclámalo mediante ticket.</p>
+            </div>
+
+            <!-- TABLA 2: SERVER BOOSTER -->
+            <div class="mb-16">
+                <h2 class="text-2xl text-purple-500 uppercase font-bold tracking-wide mb-5 flex items-center gap-3">
+                    <span>🚀</span> Beneficios Server Booster
+                </h2>
+                <div class="overflow-hidden border border-purple-900/30 rounded-xl shadow-2xl">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-purple-950/20 text-purple-300 text-xs uppercase tracking-wide border-b border-purple-900/30">
+                                <th class="px-6 py-5 font-bold">Categoría de Beneficio</th>
+                                <th class="px-6 py-5 font-bold">Detalle del Reconocimiento</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-neutral-800 bg-black/40 backdrop-blur-sm">
+                            <tr class="hover:bg-purple-600/5 transition"><td class="px-6 py-5 text-purple-400 font-bold whitespace-nowrap">Rol Especial</td><td class="px-6 py-5 text-gray-200">Asignación automática de @Server Booster.</td></tr>
+                            <tr class="hover:bg-purple-600/5 transition"><td class="px-6 py-5 text-purple-400 font-bold whitespace-nowrap">Economía x2</td><td class="px-6 py-5 text-gray-200">Sueldo base duplicado (S/. 700 cada 5 días).</td></tr>
+                            <tr class="hover:bg-purple-600/5 transition"><td class="px-6 py-5 text-purple-400 font-bold whitespace-nowrap">Multimedia</td><td class="px-6 py-5 text-gray-200">Permiso para enviar contenido en cualquier canal de texto.</td></tr>
+                            <tr class="hover:bg-purple-600/5 transition"><td class="px-6 py-5 text-purple-400 font-bold whitespace-nowrap">Bonificación</td><td class="px-6 py-5 text-gray-200 font-bold">S/. 500 adicionales por cada mejora extra.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- TABLA 3: GARAJE BOOSTER -->
+            <div class="mb-16">
+                <h2 class="text-2xl text-white uppercase font-bold tracking-wide mb-5 flex items-center gap-3">
+                    <span>🏎️</span> Garaje Exclusivo
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div class="bg-neutral-900/50 border border-neutral-800 p-5 rounded-lg flex items-center justify-between">
+                        <span class="text-gray-300">2016 Chevlon Amigo S</span>
+                        <span class="text-[10px] bg-red-600/20 text-red-500 px-2 py-1 rounded font-bold uppercase tracking-wider">Exclusivo</span>
+                    </div>
+                    <div class="bg-neutral-900/50 border border-neutral-800 p-5 rounded-lg flex items-center justify-between">
+                        <span class="text-gray-300">2015 Falcon Stallion 350</span>
+                        <span class="text-[10px] bg-red-600/20 text-red-500 px-2 py-1 rounded font-bold uppercase tracking-wider">Exclusivo</span>
+                    </div>
+                    <div class="bg-neutral-900/50 border border-neutral-800 p-5 rounded-lg flex items-center justify-between">
+                        <span class="text-gray-300">2023 Averon Bremen Vs Garde</span>
+                        <span class="text-[10px] bg-red-600/20 text-red-500 px-2 py-1 rounded font-bold uppercase tracking-wider">Exclusivo</span>
+                    </div>
+                    <div class="bg-neutral-900/50 border border-neutral-800 p-5 rounded-lg flex items-center justify-between">
+                        <span class="text-gray-300">2022 Sumo Reflexion</span>
+                        <span class="text-[10px] bg-red-600/20 text-red-500 px-2 py-1 rounded font-bold uppercase tracking-wider">Exclusivo</span>
+                    </div>
+                    <div class="bg-neutral-900/50 border border-neutral-800 p-5 rounded-lg flex items-center justify-between">
+                        <span class="text-gray-300">2022 Navara Boundary</span>
+                        <span class="text-[10px] bg-red-600/20 text-red-500 px-2 py-1 rounded font-bold uppercase tracking-wider">Exclusivo</span>
+                    </div>
+                    <div class="bg-neutral-900/50 border border-neutral-800 p-5 rounded-lg flex items-center justify-between">
+                        <span class="text-gray-300">2023 Vellfire Everest Vrd Max</span>
+                        <span class="text-[10px] bg-red-600/20 text-red-500 px-2 py-1 rounded font-bold uppercase tracking-wider">Exclusivo</span>
+                    </div>
+                    <div class="bg-neutral-900/50 border border-neutral-800 p-5 rounded-lg flex items-center justify-between">
+                        <span class="text-gray-300">2020 Falcon Advance 450</span>
+                        <span class="text-[10px] bg-red-600/20 text-red-500 px-2 py-1 rounded font-bold uppercase tracking-wider">Exclusivo</span>
+                    </div>
+                    <div class="bg-neutral-900/50 border border-neutral-800 p-5 rounded-lg flex items-center justify-between">
+                        <span class="text-gray-300">2021 Falcon Rampage Beast Bigfoot</span>
+                        <span class="text-[10px] bg-red-600/20 text-red-500 px-2 py-1 rounded font-bold uppercase tracking-wider">Exclusivo</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BOTÓN DE ACCIÓN FINAL -->
+            <div class="text-center mt-10">
+                <a href="https://peruroleplay.com" target="_blank" 
+                   class="inline-block px-12 py-5 bg-red-600 hover:bg-red-700 text-white font-bold text-lg rounded-xl transition-all shadow-[0_0_30px_rgba(220,38,38,0.4)] uppercase tracking-wide">
+                    Abrir Ticket de Soporte
+                </a>
+                <p class="text-xs text-gray-500 mt-5 uppercase tracking-widest">Abre un ticket para reclamar tus roles tras donar.</p>
+            </div>
+
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facciones y Trabajos - Perú Roleplay</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- TIPOGRAFÍA OFICIAL: TOMORROW -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tomorrow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Tomorrow', sans-serif; background-color: #0a0a0a; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #dc2626; border-radius: 10px; }
+        
+        .faction-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+        .faction-card:hover {
+            transform: translateY(-10px) translateZ(0);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+<body class="text-white min-h-screen relative overflow-x-hidden">
+    <!-- ========================================== -->
+    <!-- PANTALLA DE CARGA GLOBAL (CORREGIDA ANTI-PARPADEO) -->
+    <!-- ========================================== -->
+    <div id="pantalla-carga" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #0a0a0a; transition: opacity 0.7s; pointer-events: none;">
+        
+        <!-- Fondo Inmersivo con opacidad forzada desde el inicio -->
+        <img src="https://i.postimg.cc/3JMcB2n8/Estamos-Jodidos-Banner-Discord.png" 
+             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.15;">
+        
+        <!-- Capa Oscura y Desenfoque forzado -->
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(10, 10, 10, 0.75); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);"></div>
+
+        <!-- Logo Animado y Barra -->
+        <div style="position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center;">
+            <img src="https://i.postimg.cc/sDB64kD2/9744325783487815c73c892043122c09-Photoroom.png" 
+                 alt="Cargando Perú RP" class="animate-pulse" style="width: 140px; height: auto; filter: drop-shadow(0 0 25px rgba(220,38,38,0.8));">
+            
+            <!-- Barra de progreso visual -->
+            <div style="margin-top: 2.5rem; width: 14rem; height: 0.375rem; background-color: #262626; border-radius: 9999px; overflow: hidden; position: relative;">
+                <div style="position: absolute; top: 0; left: 0; height: 100%; background-color: #dc2626; width: 50%; animation: loading_bar 1s ease-in-out infinite alternate;"></div>
+            </div>
+            <p class="animate-pulse" style="margin-top: 1rem; color: #ef4444; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.3em; margin-bottom: 0;">Cargando Ciudad...</p>
+        </div>
+    </div>
+
+    <style>
+        @keyframes loading_bar {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
+    </style>
+
+    <script>
+        // Lógica para desaparecer la pantalla cuando todo cargue
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('pantalla-carga');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 700); 
+            }, 300); 
+        });
+    </script>
+    <!-- ========================================== -->
+
+    <!-- FONDO GENERAL DEL APARTADO (ACTUALIZADO AL LINK DE ALTA RESOLUCIÓN) -->
+    <div class="fixed inset-0 z-0">
+        <img src="https://media.discordapp.net/attachments/1430754003897290762/1500332552076918855/fondo_facciones.png?ex=69f80d13&is=69f6bb93&hm=a2b7e906bf613bc136aadd6fb8aa37b2d2d7dbc19712fed87da050f53423b37a&=&format=webp&quality=lossless&width=1243&height=699" 
+             class="w-full h-full object-cover opacity-10 fixed">
+        <div class="absolute inset-0 bg-gradient-to-b from-neutral-950 via-neutral-950/90 to-neutral-950 fixed"></div>
+    </div>
+
+    <div class="relative z-10">
+        
+        <!-- NAVBAR SECUNDARIO -->
+        <nav class="w-full bg-neutral-950/90 backdrop-blur-md border-b border-red-600/30 sticky top-0 z-[100]">
+            <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+                <img src="https://i.postimg.cc/sDB64kD2/9744325783487815c73c892043122c09-Photoroom.png" 
+                     alt="Logo Perú RP" class="h-12 drop-shadow-[0_0_10px_rgba(220,38,38,0.5)]">
+                
+                <a href="index.html" class="px-6 py-2 bg-neutral-800 hover:bg-red-600 border border-neutral-700 hover:border-red-500 rounded-lg transition-all font-bold uppercase tracking-wider text-xs">
+                    Volver al Inicio
+                </a>
+            </div>
+        </nav>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="max-w-7xl mx-auto px-6 py-16 pb-24">
+            
+            <!-- ====== SECCIÓN 1: FACCIONES OFICIALES ====== -->
+            <div class="text-center md:text-left mb-16">
+                <h1 class="text-5xl md:text-7xl font-bold uppercase tracking-tighter mb-4">
+                    Facciones <span class="text-red-600">Oficiales</span>
+                </h1>
+                <p class="text-gray-400 max-w-2xl uppercase tracking-[0.2em] text-xs font-bold">
+                    Elige tu camino dentro de la ciudad. Seguridad, Rescate o Gestión Pública.
+                </p>
+            </div>
+
+            <!-- GRID DE FACCIONES -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+                
+                <!-- FACCIÓN: POLICÍA (PNP) -->
+                <div class="faction-card relative group bg-neutral-900 border border-neutral-800 rounded-3xl overflow-hidden flex flex-col">
+                    <div class="h-56 relative overflow-hidden bg-neutral-900">
+                        <img src="https://i.postimg.cc/XNr8tXpg/Policia.png" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 transform-gpu">
+                        <div class="absolute -inset-1 bg-gradient-to-t from-neutral-900 via-neutral-900/40 to-transparent"></div>
+                        
+                        <img src="https://i.postimg.cc/zv8ncDMG/pnp-logo.png" 
+                             class="absolute bottom-4 left-6 w-20 h-20 rounded-full object-cover border-2 border-white/20 shadow-[0_10px_20px_rgba(0,0,0,0.8)]">
+                    </div>
+                    
+                    <div class="p-8 flex-grow z-10 bg-neutral-900 flex flex-col">
+                        <h2 class="text-2xl font-bold uppercase tracking-widest mb-4">Policía Nacional</h2>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-8 flex-grow">
+                            Encárgate de mantener el orden público y la seguridad ciudadana. Únete a la PNP para patrullar las calles, responder a llamados de emergencia y combatir el crimen organizado en el servidor.
+                        </p>
+                        <a href="https://discord.gg/3VUsTxNYma" target="_blank" 
+                           class="block w-full text-center py-4 bg-red-600 hover:bg-red-500 text-white font-black uppercase tracking-widest text-xs rounded-xl shadow-[0_0_20px_rgba(220,38,38,0.3)] transition-all">
+                            Postular Aquí
+                        </a>
+                    </div>
+                </div>
+
+                <!-- FACCIÓN: BOMBEROS (CGBVP) -->
+                <div class="faction-card relative group bg-neutral-900 border border-neutral-800 rounded-3xl overflow-hidden flex flex-col">
+                    <div class="h-56 relative overflow-hidden bg-neutral-900">
+                        <img src="https://i.postimg.cc/dQhBgDLB/Bomberos.png" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 transform-gpu">
+                        <div class="absolute -inset-1 bg-gradient-to-t from-neutral-900 via-neutral-900/40 to-transparent"></div>
+                        
+                        <img src="https://i.postimg.cc/vB3NhKq3/Logo-Bomberos.png" 
+                             class="absolute bottom-4 left-6 w-20 h-20 rounded-full object-cover border-2 border-white/20 shadow-[0_10px_20px_rgba(0,0,0,0.8)]">
+                    </div>
+                    
+                    <div class="p-8 flex-grow z-10 bg-neutral-900 flex flex-col">
+                        <h2 class="text-2xl font-bold uppercase tracking-widest mb-4">Bomberos Voluntarios</h2>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-8 flex-grow">
+                            Valor y sacrificio. Forma parte del equipo de respuesta rápida ante incendios, accidentes vehiculares y emergencias médicas críticas para salvar las vidas de los ciudadanos de ERLC.
+                        </p>
+                        <a href="https://discord.gg/NhrQVWnBE5" target="_blank" 
+                           class="block w-full text-center py-4 bg-red-600 hover:bg-red-500 text-white font-black uppercase tracking-widest text-xs rounded-xl shadow-[0_0_20px_rgba(220,38,38,0.3)] transition-all">
+                            Postular Aquí
+                        </a>
+                    </div>
+                </div>
+
+                <!-- FACCIÓN: MUNICIPALIDAD DE MIRAFLORES -->
+                <div class="faction-card relative group bg-neutral-900 border border-neutral-800 rounded-3xl overflow-hidden flex flex-col">
+                    <div class="h-56 relative overflow-hidden bg-neutral-900">
+                        <img src="https://i.postimg.cc/QNvbDsTK/Serenos.png" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 transform-gpu">
+                        <div class="absolute -inset-1 bg-gradient-to-t from-neutral-900 via-neutral-900/40 to-transparent"></div>
+                        
+                        <img src="https://images-ext-1.discordapp.net/external/16VaPBfwqX3OPLPPlzmMuKf9BG380wKfA3iTTrRjIDA/%3Fsize%3D4096/https/cdn.discordapp.com/icons/1451298726068097190/7bb8c322061fab35dcfefa1efce6017c.png?format=webp&quality=lossless&width=829&height=829" 
+                             class="absolute bottom-4 left-6 w-20 h-20 rounded-full object-cover bg-white border-2 border-white/20 shadow-[0_10px_20px_rgba(0,0,0,0.8)]">
+                    </div>
+                    
+                    <div class="p-8 flex-grow z-10 bg-neutral-900 flex flex-col">
+                        <h2 class="text-2xl font-bold uppercase tracking-widest mb-4">Mun. de Miraflores</h2>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-8 flex-grow">
+                            Gestión y civismo. Vela por el bienestar de los vecinos, el orden municipal y la organización de eventos. Únete para trabajar en la administración y desarrollo de la zona de Miraflores.
+                        </p>
+                        <a href="https://discord.gg/8MsgwyS5xN" target="_blank" 
+                           class="block w-full text-center py-4 bg-red-600 hover:bg-red-500 text-white font-black uppercase tracking-widest text-xs rounded-xl shadow-[0_0_20px_rgba(220,38,38,0.3)] transition-all">
+                            Postular Aquí
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====== SECCIÓN 2: TRABAJOS LIBRES ====== -->
+            <div class="border-t border-white/10 pt-20 text-center md:text-left mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-tighter mb-4">
+                    Trabajos <span class="text-yellow-500">Libres</span>
+                </h2>
+                <p class="text-gray-400 max-w-3xl uppercase tracking-[0.1em] text-sm font-bold leading-relaxed">
+                    Actividades que puedes realizar para ganar dinero extra, sin necesidad de postular ni capacitarte antes para ejercerlos.
+                </p>
+                <div class="inline-block mt-4 bg-red-600/10 border border-red-600/30 rounded-lg px-4 py-2">
+                    <p class="text-red-400 text-xs uppercase tracking-widest font-black flex items-center gap-2">
+                        <span>⚠️</span> *Deberás enviar la evidencia requerida según corresponda a cada trabajo.
+                    </p>
+                </div>
+            </div>
+
+            <!-- GRID DE TRABAJOS LIBRES -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- TRABAJO: PROSEGURRO -->
+                <div class="faction-card relative group bg-neutral-900 border border-neutral-800 rounded-3xl overflow-hidden flex flex-col">
+                    <div class="h-44 relative overflow-hidden bg-neutral-900">
+                        <img src="https://i.postimg.cc/DyhC9nsm/Prosegurro.png" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 transform-gpu grayscale group-hover:grayscale-0">
+                        <div class="absolute -inset-1 bg-gradient-to-t from-neutral-900 via-neutral-900/60 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex-grow z-10 bg-neutral-900 flex flex-col">
+                        <p class="text-yellow-500 text-[10px] font-black uppercase tracking-widest mb-1">Prosegurro</p>
+                        <h3 class="text-xl font-bold uppercase tracking-wide mb-3">Transporte de Dinero</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">
+                            Conduce un camión blindado de punto A a punto B de manera segura. Evita que roben el dinero transportado.
+                        </p>
+                        <div class="mt-auto bg-green-500/10 border border-green-500/20 p-3 rounded-lg flex items-center gap-3">
+                            <span class="text-xl">💵</span>
+                            <p class="text-green-400 text-xs font-bold uppercase tracking-wider">Recibirás el 75% del monto total</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TRABAJO: SERPOST -->
+                <div class="faction-card relative group bg-neutral-900 border border-neutral-800 rounded-3xl overflow-hidden flex flex-col">
+                    <div class="h-44 relative overflow-hidden bg-neutral-900">
+                        <img src="https://i.postimg.cc/5NJPhbvF/Postal.png" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 transform-gpu grayscale group-hover:grayscale-0">
+                        <div class="absolute -inset-1 bg-gradient-to-t from-neutral-900 via-neutral-900/60 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex-grow z-10 bg-neutral-900 flex flex-col">
+                        <p class="text-yellow-500 text-[10px] font-black uppercase tracking-widest mb-1">SERPOST</p>
+                        <h3 class="text-xl font-bold uppercase tracking-wide mb-3">Cartero</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">
+                            Estarás a cargo de entregar paquetería y correspondencia en distintas zonas del mapa.
+                        </p>
+                        <div class="mt-auto bg-green-500/10 border border-green-500/20 p-3 rounded-lg flex items-center gap-3">
+                            <span class="text-xl">💵</span>
+                            <p class="text-green-400 text-xs font-bold uppercase tracking-wider">S/.2,200 x 4 paquetes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TRABAJO: GORELIMA -->
+                <div class="faction-card relative group bg-neutral-900 border border-neutral-800 rounded-3xl overflow-hidden flex flex-col">
+                    <div class="h-44 relative overflow-hidden bg-neutral-900">
+                        <img src="https://i.postimg.cc/yYKfMs9g/Basura.png" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 transform-gpu grayscale group-hover:grayscale-0">
+                        <div class="absolute -inset-1 bg-gradient-to-t from-neutral-900 via-neutral-900/60 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex-grow z-10 bg-neutral-900 flex flex-col">
+                        <p class="text-yellow-500 text-[10px] font-black uppercase tracking-widest mb-1">GORELIMA</p>
+                        <h3 class="text-xl font-bold uppercase tracking-wide mb-3">Recolector de Basura</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">
+                            Colabora en la recolección por toda la región. Solo o con un compañero, deberás llenar el camión a su máxima capacidad (10/10).
+                        </p>
+                        <div class="mt-auto bg-green-500/10 border border-green-500/20 p-3 rounded-lg flex items-center gap-3">
+                            <span class="text-xl">💵</span>
+                            <p class="text-green-400 text-xs font-bold uppercase tracking-wider">S/.2,400 al completarlo</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TRABAJO: CAMIONES DE CARGA -->
+                <div class="faction-card relative group bg-neutral-900 border border-neutral-800 rounded-3xl overflow-hidden flex flex-col">
+                    <div class="h-44 relative overflow-hidden bg-neutral-900">
+                        <img src="https://i.postimg.cc/YqxXkZfD/infor.png" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 transform-gpu grayscale group-hover:grayscale-0">
+                        <div class="absolute -inset-1 bg-gradient-to-t from-neutral-900 via-neutral-900/60 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex-grow z-10 bg-neutral-900 flex flex-col">
+                        <p class="text-yellow-500 text-[10px] font-black uppercase tracking-widest mb-1">Logística</p>
+                        <h3 class="text-xl font-bold uppercase tracking-wide mb-3">Camiones de Carga</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">
+                            El juego te asignará rutas para transportar carga pesada de punto A a punto B por toda la ciudad.
+                        </p>
+                        <div class="mt-auto bg-green-500/10 border border-green-500/20 p-3 rounded-lg flex items-center gap-3">
+                            <span class="text-xl">💵</span>
+                            <p class="text-green-400 text-xs font-bold uppercase tracking-wider">S/.1,000 por entrega</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TRABAJO: TAXISTA -->
+                <div class="faction-card relative group bg-neutral-900 border border-neutral-800 rounded-3xl overflow-hidden flex flex-col">
+                    <div class="h-44 relative overflow-hidden bg-neutral-900">
+                        <img src="https://i.postimg.cc/dtFWbwdG/Taxi.png" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 transform-gpu grayscale group-hover:grayscale-0">
+                        <div class="absolute -inset-1 bg-gradient-to-t from-neutral-900 via-neutral-900/60 to-transparent"></div>
+                    </div>
+                    <div class="p-6 flex-grow z-10 bg-neutral-900 flex flex-col">
+                        <p class="text-yellow-500 text-[10px] font-black uppercase tracking-widest mb-1">Transporte Público</p>
+                        <h3 class="text-xl font-bold uppercase tracking-wide mb-3">Taxista</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6 flex-grow">
+                            Usa un taxi autorizado para ofrecer viajes a otros jugadores que necesiten transporte rápido.
+                        </p>
+                        <div class="mt-auto bg-green-500/10 border border-green-500/20 p-3 rounded-lg flex items-center gap-3">
+                            <span class="text-xl">💵</span>
+                            <p class="text-green-400 text-xs font-bold uppercase tracking-wider">Trato con el Pasajero</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+</body>
+</html>
